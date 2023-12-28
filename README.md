@@ -19,8 +19,8 @@ Desired AI output:
 
 make it work first then change from gpt4 to mixtral
 
-scrape.py - Gets the WOTD
-rnd.py - wRites and Defines the words returned
-run_dict.py - Keeps a running dictionary of what words have been added (can it be dated?)
-links.txt - links
+* scrape.py - Gets the WOTD
+* rnd.py - wRites and Defines the words returned
+* run_dict.py - Keeps a running dictionary of what words have been added (can it be dated?)
+* links.txt - links
 
