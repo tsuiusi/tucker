@@ -1,4 +1,4 @@
-# There are too many uni students (and usel
+# There are too many uni students
 
 ## Instructions:
 1. To use OpenAI API Key first source ~/.bashrc (because I'll likely forget where it was)
