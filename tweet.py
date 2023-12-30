@@ -2,12 +2,10 @@
 from rnd import api_call
 from scrape import find_all
 from twitter import * 
-import base64
-import hashlib
 import os
-import re
-import requests
 import tweepy
+import schedule
+import time
 
 from requests_oauthlib import OAuth2Session
 
@@ -38,18 +36,30 @@ def prep_time(word):
     client.create_tweet(text=tweet)
     print("Success!")
 
-with open("words.txt", "r") as f:
-    dictionary = f.read().splitlines()
+def get_words():
+    with open("words.txt", "r") as f:
+        dictionary = f.read().splitlines()
 
-# finding all the links
-with open("links.txt", "r") as f:
-    links = f.read().split("\n")[:-1]
-    words = find_all(links)
-    words = [i for i in words if i not in dictionary]
+    # finding all the links
+    with open("links.txt", "r") as f:
+        links = f.read().split("\n")[:-1]
+        words = find_all(links)
+        words = [i for i in words if i not in dictionary]
 
-with open("words.txt", "a") as f:
+    with open("words.txt", "a") as f:
+        for i in words:
+            f.write(i)
+
+    return words
+
+def main():
+    words = get_words()
+
     for i in words:
-        f.write(i)
+        prep_time(i)
 
-for i in words:
-    prep_time(i)
+schedule.every().day.at("12:30").do(main, 'Tweeting time')
+
+while True:
+    schedule.run_pending()
+    time.sleep(600)
