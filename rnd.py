@@ -1,16 +1,9 @@
 import os
-from scrape import find_all
 from openai import OpenAI
-
-
-with open('links.txt', 'r') as f:
-    links = f.read().split("\n")[:-1]
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 client = OpenAI(api_key=OPENAI_API_KEY)
-
-words = find_all(links)
 
 with open("instructions.txt", "r") as f:
     instructions = f.read()
@@ -28,5 +21,6 @@ def api_call(word):
 
     return response.choices[0].message.content
 
-print(api_call(words[1]))
+# print(api_call(words[1]))i
+
 
